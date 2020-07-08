@@ -1,3 +1,4 @@
+git 上传命令
 git config --global user.name “name”
 git config --global user.email youxiang@qq.com
 
@@ -11,3 +12,17 @@ git commit -m "init files"　　　　（双引号的是注解　比如第几次
  
 git remote add origin https://github.com/.....　　（把传到的git 地址写上）
 git push -u origin master　　　　（如果刚建的git仓库在master前加一个+（+master）推送上去就可以了）
+
+
+linux 命令
+创建文件（多）          sudo touch a.txt
+创建文件夹（多）        sudo mkdir  a
+删除文件（多）          sudo rm  a
+删除空文件夹（多）       sudo rmdir a
+删除带文件的文件夹（多）  sudo rm -r a a.txt
+移动文件(多个不同的文件)  sudo mv  a a.txt   /...地址
+复制文件(只是文件)       sudo cp  a   /...地址
+复制文件(多个不同文件)    sudo cp -r  a a.txt   /...地址
+sudo apt-get update 
+sudo apt-get upgrade
+sudo apt install 
