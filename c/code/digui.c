@@ -6,4 +6,3 @@ void main()
    scanf("%d",&n);
    printf("%d的阶是%d\n",n,jieji(n));
 }
-
