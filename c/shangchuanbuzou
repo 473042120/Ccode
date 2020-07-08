@@ -1,0 +1,13 @@
+git config --global user.name “name”
+git config --global user.email youxiang@qq.com
+
+git init　　　　　　　　　　　　　　（初始化空间会在当前的空间中生成一个.git  文件　可以通过　　ls -a　进行查看）
+ 
+git status 　　　　　　　　　　　　（查看状态　没有什么用，但是也输入一遍吧）
+ 
+git add wenjiandizhi　　　　　　　（指定要上传的代码的空间）
+ 
+git commit -m "init files"　　　　（双引号的是注解　比如第几次上传的版本是多少可以自己定义）
+ 
+git remote add origin https://github.com/.....　　（把传到的git 地址写上）
+git push -u origin master　　　　（如果刚建的git仓库在master前加一个+（+master）推送上去就可以了）
