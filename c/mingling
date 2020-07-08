@@ -13,6 +13,17 @@ git commit -m "init files"　　　　（双引号的是注解　比如第几次
 git remote add origin https://github.com/.....　　（把传到的git 地址写上）
 git push -u origin master　　　　（如果刚建的git仓库在master前加一个+（+master）推送上去就可以了）
 
+安装好git之后一般会在C盘的C:\Users\Administator目录下生成 .gitconfig配置文件。用文档编辑工具打开该文件
+添加：
+[user]
+name = wb-ly409739  //你的用户名
+email = wb-ly409739@alibaba-inc.com  //你的git邮箱账号
+[credential]
+    helper = store
+然后保存就可以了。
+方法二：
+直接在git bash 中执行命令：git config --global credential.helper store
+在输入一次账号密码就可以保存了
 
 linux 命令
 创建文件（多）          sudo touch a.txt
