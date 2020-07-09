@@ -1,5 +1,5 @@
- #include "/home/e575/c/.h/zhanjiejuemigong.h"
-// #include "/home/e575/c/.h/duiliejiejuemigong.h"
+ #include ".h/zhanjiejuemigong.c"
+// #include ".h/duiliejiejuemigong.c"
 
 int main()
 {
