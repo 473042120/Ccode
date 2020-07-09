@@ -1,5 +1,4 @@
 # include ".h/digui.c"
-
 void main()
 {
    int n=6;
