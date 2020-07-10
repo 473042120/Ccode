@@ -36,7 +36,7 @@ int Empty_Queue (PSeqQueue Q)
 }
 
 //入队
-int In_SeqQueue(PSeqQueue Q,DataType x)
+int In_SeqQueue(PSeqQueue Q,int x)
 {
     if((Q->rear+1)%MAXSIZE==Q->front)
     {
@@ -52,7 +52,7 @@ int In_SeqQueue(PSeqQueue Q,DataType x)
 }
 
 //出队
-int Out_SeqQueue (PSeqQueue Q,DataType *x)
+int Out_SeqQueue (PSeqQueue Q,int *x)
 {
     if(Empty_Queue(Q))
     {
@@ -69,7 +69,7 @@ int Out_SeqQueue (PSeqQueue Q,DataType *x)
 }
 //读队头元素
 
-int Front_SeqQueue(PSeqQueue Q,DataType*x)
+int Front_SeqQueue(PSeqQueue Q,int *x)
 {
     if(Q->front==Q->rear)
     {
