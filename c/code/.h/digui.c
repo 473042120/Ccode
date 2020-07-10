@@ -57,3 +57,50 @@ void Perm(int list [],int  k, int m)//递归全排列集合的全部排列
         }
     }
 }
+
+void ConverseStrt (char *str ,int start,int end)
+{
+    if(end-start<1)
+    return;
+    else
+    {
+    //    str[start] <-> str[end];//将首尾字符交换有问题有待更改
+        ConverseStrt (str,start+1,end-1);
+    }
+    
+}
+
+//迷宫递归
+
+#define m  6
+#define n  8
+#include <malloc.h>
+#include "zhanjiejuemigong.c"
+int path (int maze[][n+2],item move[],int x,int y,int step)
+{
+   int i;
+   step++;
+   maze[x][y]==step;
+   if(x==m&&y==n)
+   return 1;
+   for(int i=0;i<4;i++)
+   {
+       if(maze[x+move[i].x][y+move[i].y]==0)
+           if(path(maze,move,x+move[i].x,y+move[i].y,step))
+             return 1;
+   }
+   step--;
+   maze[x][y]=0;
+   return 0;
+}
+
+//火车出站可能
+
+int Train_into_PlatForm(int i,int j)
+{
+    if(i==0) return 1;  //火车没有，或者全部在站台内
+    else 
+     if(j==0) return Train_into_PlatForm(i-1,1);
+      else return Train_into_PlatForm(i-1,j+1)+Train_into_PlatForm(i,j-1);
+}
+
