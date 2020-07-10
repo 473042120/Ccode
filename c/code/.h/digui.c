@@ -104,3 +104,11 @@ int Train_into_PlatForm(int i,int j)
       else return Train_into_PlatForm(i-1,j+1)+Train_into_PlatForm(i,j-1);
 }
 
+int dunno(int p)
+{
+    int v;
+    if(p==0) v=3;
+
+    else v=dunno(p-1)+5;
+    return v;
+}
