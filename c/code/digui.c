@@ -8,4 +8,3 @@ void main()
   // printf("%d\n",Train_into_PlatForm(7,0));
     printf("%d\n",dunno(3));
 }
-   
