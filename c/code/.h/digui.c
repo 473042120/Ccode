@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int jieji (int n)
+int jieji (int n)  //求阶级
 {
     if (n==0)
     return 1;
@@ -8,7 +8,7 @@ int jieji (int n)
     return (n*jieji(n-1));
 }
 
-int max (int a[],int l,int h)
+int max (int a[],int l,int h) //求最大
 {
   if(l==h)  return a[l];
   int m,x,y;
@@ -19,5 +19,41 @@ int max (int a[],int l,int h)
       return x;
   else
       return y;
-  
+}
+
+int sum (int a[],int l,int h) //求和
+{
+    if(l==h)
+      return a[1];
+    else
+      return (sum(a,1,h-1)+a[h]);
+}
+
+
+void Swap (int A[],int i,int j) //数组中两个数据交换
+{
+    int x;
+    x=A[i];
+    A[i]=A[j];
+    A[j]=x;
+}
+
+void Perm(int list [],int  k, int m)//递归全排列集合的全部排列 
+
+{
+    int i;
+    if(k==m)
+    {
+        for (i=0;i<=m;i++) printf("%d",list[i]);
+        printf("\n");
+    }
+    else
+    {
+        for(i=k; i<m; i++)
+        {
+            Swap(list,k,i);
+            Perm(list,k+1,m);
+            Swap(list,k,i);
+        }
+    }
 }
