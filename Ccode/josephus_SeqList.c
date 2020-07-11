@@ -3,9 +3,6 @@
 #include ".h/SeqList.h"
 #define MAXSIZE 100
 
-typedef struct {
-     int x;
-}DdataType;
 
 int josephus_SeqList(PSeqList josephus_Seq,int s, int m)
 {
@@ -20,7 +17,7 @@ int josephus_SeqList(PSeqList josephus_Seq,int s, int m)
     for(i=josephus_Seq->length;i>0;i--)
     {   
         s1=(s1+m-1)%i;
-        w=josephus_Seq->data[s1].x;
+        w=josephus_Seq->data[s1];
         if(i%20==0)
         printf("\n");
         printf("%d\t",w);
@@ -34,7 +31,7 @@ PSeqList zidongfuzhi(PSeqList H)
     H=(PSeqList)malloc(sizeof(PSeqList)*MAXSIZE);
     for(i=0;i<100;i++)
      {   
-         H->data[i].x=i;
+         H->data[i]=i;
          H->length++;
      }
      return(H);
@@ -45,7 +42,7 @@ PSeqList fuzhi(PSeqList H)
     H=(PSeqList)malloc(sizeof(PSeqList)*MAXSIZE);
     for(i=0;i<10;i++)
      {   printf("输入数值");
-         scanf("%d",&H->data[i].x);
+         scanf("%d",&H->data[i]);
          H->length++;
      }
      return(H);

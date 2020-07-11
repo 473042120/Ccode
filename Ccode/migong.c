@@ -1,5 +1,5 @@
-#include ".h/SeqQueuemaze.h"
-//#include ".h/SeqStackmaze.h"
+//#include ".h/SeqQueuemaze.h"
+#include ".h/SeqStackmaze.h"
 
 int main()
 {  

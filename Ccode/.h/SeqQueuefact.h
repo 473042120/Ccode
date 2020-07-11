@@ -1,4 +1,4 @@
-#include ".h/SeqQueue.h"
+#include "SeqQueue.h"
 
 void Array_LeftCircle_Move(int A[],int n,int k)//n代表数组中存储的元素个数，k代表循环左移动k位
 {  
@@ -26,7 +26,7 @@ void YangHui_trangle(int n)
     for(i=1;i<=n;i++,sq=0)
     {  
         printf("\n");
-        for(int k=0;k<40-4*i;k+=2) printf("");
+        for(int k=0;k<40-4*i;k+=2) printf(" ");
         In_SeqQueue(sq,0);
         for(int j=1;j<=i+2;j++)
         {
@@ -39,8 +39,4 @@ void YangHui_trangle(int n)
     }
     printf("\n");
     Destroy_SeqQueue(&sq);
-}
-void main()
-{
-    YangHui_trangle(5);
 }
