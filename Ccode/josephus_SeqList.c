@@ -1,4 +1,4 @@
-#include <stdio.h>   //约瑟夫问题
+#include <stdio.h>   //约瑟夫问题  顺序表解决问题
 #include <malloc.h>
 #include ".h/SeqList.h"
 #define MAXSIZE 100

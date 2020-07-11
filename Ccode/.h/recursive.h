@@ -81,7 +81,7 @@ void ConverseStrt (char *str ,int start,int end)
 #define m  6                    //迷宫
 #define n  8                    //迷宫
 #include <malloc.h>             //迷宫
-#include "zhanjiejuemigong.c"   //迷宫
+#include "SeqStackmaze.h"   //迷宫
 
 int path (int maze[][n+2],item move[],int x,int y,int step)
 {

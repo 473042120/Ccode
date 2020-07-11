@@ -67,5 +67,3 @@ int  chrru (DLinkList p, DLinkList s)
   p->next=s;
   return 0;
 }
-
-//删除

@@ -1,9 +1,9 @@
-#include<stdio.h>
+#include<stdio.h>   //用的是队列 maze
 #include<malloc.h>
 #include<stdlib.h>
 #define MAXSIZE 100
 #define m 6
-#define n 8         //用的是队列
+#define n 8        
 
 int  xianshi ( int maze[][n+2] )
 {   int i,j;
@@ -99,7 +99,7 @@ int pop (PSeqStack S,DataTypde z)
     return 1;}
 }
 
-void Destroy_SeqStack (PSeqStack *S)
+void Destroy_SeqStack (PSeqStack S)
 {
   if(S)
    free(S);
@@ -107,8 +107,9 @@ void Destroy_SeqStack (PSeqStack *S)
    return;
 }
 
-void  mazepath (int maze[][n+2], item move[], int x1,int y1,int x2,int y2)
-{   
+void  mazepath (int maze[][n+2], item move[], int x1,int y1)
+{  
+    int x2=6,y2=8;
     int i,j,d,x,y;
     PSeqStack S;
     S=Init();

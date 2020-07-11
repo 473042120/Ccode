@@ -89,11 +89,11 @@ int Pop_SeqStack(PSeqStack S,DataType *z)//x的数据类型自定义
 
 //销毁栈
 
-void Destroy_SeqStack (PSeqStack * S)
+void Destroy_SeqStack (PSeqStack S)
 {
-  if(*S)
-   free(*S);
-   *S=NULL;
+  if(S)
+   free(S);
+   S=NULL;
    return;
 }
 

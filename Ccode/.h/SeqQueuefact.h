@@ -1,7 +1,7 @@
 #include ".h/SeqQueue.h"
 
 void Array_LeftCircle_Move(int A[],int n,int k)//n代表数组中存储的元素个数，k代表循环左移动k位
-{
+{   Datatype a;
     int i;
     PSeqQueue Q=Init_SeqQueue();
     for(i=0;i<k;i++) In_SeqQueue(Q,A[i]);

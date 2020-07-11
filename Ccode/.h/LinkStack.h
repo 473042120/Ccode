@@ -1,14 +1,9 @@
 #include <stdio.h> //栈链式存储
 #include <malloc.h>
 
-typedef struct 
-{
-   int x;
-}DataType;
-
 typedef struct node //结点结构
 {
-    DataType data; //int可更改
+    int data; //int可更改
     struct node *next;
 } StackNode, *PStackNode;
 
@@ -40,7 +35,7 @@ int Empty_LinkStack(PLinkStack S)
 
 //入栈
 
-int Push_LinkStack(PLinkStack S, DataType x)
+int Push_LinkStack(PLinkStack S, int x)
 { //进栈，入口参数：链栈指针，进栈元素，返回值：1表示成功，0表示失败
     PStackNode P;
     P = (PStackNode)malloc(sizeof(StackNode));
@@ -49,7 +44,7 @@ int Push_LinkStack(PLinkStack S, DataType x)
         printf("内存溢出");
         return 0;
     }
-    P->data.x = x.x;
+    P->data = x;
     P->next = S->top;
     S->top = P;
     return (1);
@@ -57,7 +52,7 @@ int Push_LinkStack(PLinkStack S, DataType x)
 
 //出栈
 
-int Pop_LinkStack(PLinkStack S, DataType *x)
+int Pop_LinkStack(PLinkStack S, int *x)
 {
     PStackNode P;
     if (Empty_LinkStack(S))
@@ -65,7 +60,7 @@ int Pop_LinkStack(PLinkStack S, DataType *x)
         printf("栈空，不能出栈");
         return (0);
     }
-    x->x = S->top->data.x;
+    *x = S->top->data;
     P = S->top;
     S->top = S->top->next;
     free(P);
@@ -74,14 +69,14 @@ int Pop_LinkStack(PLinkStack S, DataType *x)
 
 //取栈顶元素
 
-int GetTop_LinkStack(PLinkStack S, DataType *x)
+int GetTop_LinkStack(PLinkStack S, int *x)
 {
     if (Empty_LinkStack(S))
     {
         printf("栈空");
         return (0);
     }
-    x->x = S->top->data.x;
+    *x = S->top->data;
     return 1;
 }
 
