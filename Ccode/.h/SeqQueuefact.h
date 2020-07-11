@@ -40,3 +40,7 @@ void YangHui_trangle(int n)
     printf("\n");
     Destroy_SeqQueue(&sq);
 }
+void main()
+{
+    YangHui_trangle(5);
+}
