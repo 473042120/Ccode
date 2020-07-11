@@ -2,5 +2,5 @@
 
 int main()
  {   
-     printf("%d\n",pingfang(2,3));
+     printf("%d\n",pingfang(2,20));
  }
