@@ -133,7 +133,7 @@ int mazepath (int maze[][n+2],item move[],int x0,int y0)
                         Pop_SeqStack(S,&temp);
                         printf("(%d,%d)",temp.x,temp.y);
                     }
-                    Destroy_SeqStack(&S);
+                    Destroy_SeqStack(S);
                     return 1;
                 }
                 else d=0;
@@ -141,7 +141,7 @@ int mazepath (int maze[][n+2],item move[],int x0,int y0)
             else  d++;
         }
     }
-    Destroy_SeqStack(&S);
+    Destroy_SeqStack(S);
     return 0;
 }
 

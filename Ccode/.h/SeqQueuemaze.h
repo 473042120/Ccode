@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #define MAXSIZE 100
 #define m 6
-#define n 8
+#define n 8         //用的是队列
 
 int  xianshi ( int maze[][n+2] )
 {   int i,j;
@@ -34,7 +34,7 @@ typedef struct node{
     int x[MAXSIZE];
     int y[MAXSIZE];
     int d[MAXSIZE];
-    int size=100;
+    int size;
     int prior;
     int next;
 }SeqStack,*PSeqStack;//迷宫的队列
@@ -47,6 +47,7 @@ PSeqStack Init (void)
     {
         S->prior=0;
         S->next=0;
+        S->size=100;
     }
     else 
     printf("失败");
@@ -62,7 +63,7 @@ int Empty (PSeqStack S)
 }
 
 int filled (PSeqStack S)
-{
+{   
     if(((S->next+1)%S->size)==S->prior)
     return 1;
     else return 0;
@@ -98,7 +99,7 @@ int pop (PSeqStack S,DataTypde z)
     return 1;}
 }
 
-void Destroy_SeqStack (PSeqStack & S)
+void Destroy_SeqStack (PSeqStack *S)
 {
   if(S)
    free(S);

@@ -1,4 +1,4 @@
-#include ".h/duilie.c"
+#include ".h/SeqQueue.h"
 
 void Array_LeftCircle_Move(int A[],int n,int k)//n代表数组中存储的元素个数，k代表循环左移动k位
 {
@@ -7,7 +7,7 @@ void Array_LeftCircle_Move(int A[],int n,int k)//n代表数组中存储的元素
     for(i=0;i<k;i++) In_SeqQueue(Q,A[i]);
     for(i=k;i<n;i++) A[i-k]=A[i];
     i=n-k;
-    while(!Empty_Queue(Q))
+    while(!Empty_SeqQueue(Q))
     {
         Out_SeqQueue(Q,&A[i]);
         ++i;

@@ -1,31 +1,11 @@
 #include <stdio.h>   //约瑟夫问题
 #include <malloc.h>
+#include ".h/SeqList.h"
 #define MAXSIZE 100
 
-typedef struct node
-{
-   int data[MAXSIZE];
-   int length;
-}SeqList,*PSeqList;
-
-int Delete_SeqList(PSeqList PL,int i)
-{
-    int j;
-    if(!PL)
-    {
-        printf("表不存在");
-        return(-1);
-    }
-    if(i<1 || i>PL->length)
-    {
-        printf("删除位置不合法");
-        return(0);
-    }
-    for(j=i;j<PL->length;j++)
-      PL->data[j-1]=PL->data[j];
-      PL->length--;
-      return(1);    
-}
+typedef struct {
+     int x;
+}DdataType;
 
 int josephus_SeqList(PSeqList josephus_Seq,int s, int m)
 {
@@ -40,7 +20,7 @@ int josephus_SeqList(PSeqList josephus_Seq,int s, int m)
     for(i=josephus_Seq->length;i>0;i--)
     {   
         s1=(s1+m-1)%i;
-        w=josephus_Seq->data[s1];
+        w=josephus_Seq->data[s1].x;
         if(i%20==0)
         printf("\n");
         printf("%d\t",w);
@@ -54,7 +34,7 @@ PSeqList zidongfuzhi(PSeqList H)
     H=(PSeqList)malloc(sizeof(PSeqList)*MAXSIZE);
     for(i=0;i<100;i++)
      {   
-         H->data[i]=i;
+         H->data[i].x=i;
          H->length++;
      }
      return(H);
@@ -65,7 +45,7 @@ PSeqList fuzhi(PSeqList H)
     H=(PSeqList)malloc(sizeof(PSeqList)*MAXSIZE);
     for(i=0;i<10;i++)
      {   printf("输入数值");
-         scanf("%d",&H->data[i]);
+         scanf("%d",&H->data[i].x);
          H->length++;
      }
      return(H);

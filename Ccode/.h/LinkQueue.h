@@ -1,8 +1,12 @@
-#include <stdio.h>
+#include <stdio.h>  //队列链式存储
 #include <malloc.h>
 
+typedef struct {
+    int x;
+}DataType;
+
 typedef struct node {
-   int  data;//存储数据
+   DataType data;//存储数据
    struct node*next;  
 }Qnode,*PQNode;
 
@@ -24,6 +28,8 @@ PLinkQueue Init_LinkQueue()
     return Q;
 }
 
+//判断队列空
+
 int Empty_LinkQueue (PLinkQueue (Q))
 {
     if(Q&&Q->front==NULL&&Q->rear==NULL)
@@ -34,7 +40,7 @@ int Empty_LinkQueue (PLinkQueue (Q))
 
 //入队
 
-int In_LinkQueue (PLinkQueue Q,int x)
+int In_LinkQueue (PLinkQueue Q,DataType x)
 {
    PQNode p;
    p=(PQNode)malloc(sizeof(Qnode));
@@ -43,7 +49,7 @@ int In_LinkQueue (PLinkQueue Q,int x)
        printf("溢出");
        return 0;
    }
-   p->data=x;
+   p->data.x=x.x;
    p->next=NULL;
    if(Empty_LinkQueue(Q))
     Q->rear=Q->front=p;
@@ -57,7 +63,7 @@ int In_LinkQueue (PLinkQueue Q,int x)
 
 //出队
 
-int out_LinkQueue(PLinkQueue Q,int *x)
+int out_LinkQueue(PLinkQueue Q,DataType *x)
 {
     PQNode p;
     if(Empty_LinkQueue(Q))
@@ -65,7 +71,7 @@ int out_LinkQueue(PLinkQueue Q,int *x)
         printf("队空");
         return 0;
     }
-    *x=Q->front->data;
+    x->x=Q->front->data.x;
     p=Q->front;
     Q->front=Q->front->next;
     free(p);
@@ -76,14 +82,14 @@ int out_LinkQueue(PLinkQueue Q,int *x)
 
 //读队头元素
 
-int Front_LinkQueue(PLinkQueue Q,int *x)
+int Front_LinkQueue(PLinkQueue Q,DataType*x)
 {
     if(Empty_LinkQueue(Q))
     {
         printf("队空");
         return (0);
     }
-    *x=Q->front->data;
+    x->x=Q->front->data.x;
     return 1;
 }
 

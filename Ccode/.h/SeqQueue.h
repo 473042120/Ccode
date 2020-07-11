@@ -1,9 +1,14 @@
-#include<stdio.h>
+#include<stdio.h>  //队列的顺序存储
 #include<malloc.h>
 #define MAXSIZE 100
 
+typedef struct
+{
+    int x;
+}Datatype;
+
 typedef struct {
-    int data[MAXSIZE];//存储数据
+    Datatype data[MAXSIZE];//存储数据
     int front,rear;
 }SeqQueue,*PSeqQueue;
 
@@ -14,7 +19,7 @@ typedef struct {
 //Q->front=(Q->front+1)%MAXSIEZ; 头尾连接的循环结构
 
 //队列初始化
-PSeqQueue Init_Queue()
+PSeqQueue Init_SeqQueue()
 {
    PSeqQueue Q;
    Q=(PSeqQueue)malloc(sizeof(SeqQueue));
@@ -27,7 +32,7 @@ PSeqQueue Init_Queue()
 }
 
 //判队空操作
-int Empty_Queue (PSeqQueue Q)
+int Empty_SeqQueue (PSeqQueue Q)
 {
    if(Q&&Q->front==Q->rear)
    return 1;
@@ -36,7 +41,7 @@ int Empty_Queue (PSeqQueue Q)
 }
 
 //入队
-int In_SeqQueue(PSeqQueue Q,int x)
+int In_SeqQueue(PSeqQueue Q,Datatype x)
 {
     if((Q->rear+1)%MAXSIZE==Q->front)
     {
@@ -46,15 +51,15 @@ int In_SeqQueue(PSeqQueue Q,int x)
     else
     {
         Q->rear=(Q->rear+1)%MAXSIZE;
-        Q->data[Q->rear]=x;
+        Q->data[Q->rear].x=x.x;
         return 1; 
     }
 }
 
 //出队
-int Out_SeqQueue (PSeqQueue Q,int *x)
+int Out_SeqQueue (PSeqQueue Q,Datatype *x)
 {
-    if(Empty_Queue(Q))
+    if(Empty_SeqQueue(Q))
     {
         printf("队空");
         return -1;
@@ -62,23 +67,23 @@ int Out_SeqQueue (PSeqQueue Q,int *x)
     else
     {
         Q->front=(Q->front+1)%MAXSIZE;
-        *x=Q->data[Q->front];
+        x->x=Q->data[Q->front].x;
         return 1;
     }
     
 }
 //读队头元素
 
-int Front_SeqQueue(PSeqQueue Q,int *x)
+int Front_SeqQueue(PSeqQueue Q,Datatype *x)
 {
     if(Q->front==Q->rear)
     {
-        prinrf("队空");
+        printf("队空");
         return -1;
     }
     else
     {
-        *x=Q->data[(Q->front+1)%MAXSIZE];
+        x->x=Q->data[(Q->front+1)%MAXSIZE].x;
         return 1;
     }
 }

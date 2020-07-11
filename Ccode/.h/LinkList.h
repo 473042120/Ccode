@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> //单链表 线性表的链式存储结构
 #include <malloc.h>
 #define MAXSIZE 100
 

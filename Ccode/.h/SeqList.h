@@ -1,13 +1,19 @@
-#include <stdio.h>
+#include <stdio.h> //顺序表 线性表的顺序存储结构
 #include <malloc.h>
 #define MAXSIZE 100
 
+typedef struct {
+    int x;  
+}DataType; //方便更改存储的数据类型
+
 typedef struct node{
-    int data[MAXSIZE];
-    int length;
+    DataType data[MAXSIZE];  
+    int length;  //表长
 }SeqList,*PSeqList;
 
-PSeqList Init_SeqList(viod)
+//顺序链表初始化
+
+PSeqList Init_SeqList()
 {
     PSeqList PL;
     PL=(PSeqList)malloc(sizeof(SeqList));
@@ -25,10 +31,10 @@ int Length_SeqList(PSeqList L)
 
 //顺序表达检索操作
 
-int Location_SeqList(PSeqList L,int x)//x视情况而定
+int Location_SeqList(PSeqList L,DataType x)//x视情况而定
 {
     int i=0;
-    while(i<L->length && L->data[i]!=x)
+    while(i<L->length && L->data[i].x!=x.x)
       i++;
     if(i>=L->length)  return  (0);
     else  return (i+1);    
@@ -36,7 +42,7 @@ int Location_SeqList(PSeqList L,int x)//x视情况而定
 
 //顺序表的插入运算
 
-int Insert_SeqList(PSeqList PL,int i,int x)//视情况而定
+int Insert_SeqList(PSeqList PL,int i,DataType x)//视情况而定
 {
     int j;
     if(!PL)
@@ -56,8 +62,8 @@ int Insert_SeqList(PSeqList PL,int i,int x)//视情况而定
     }
     for(j=PL->length-1;j>=i-1;j--)
     {
-        PL->data[j+1]=PL->data[j];
-        PL->data[i-1]=x;
+        PL->data[j+1].x=PL->data[j].x;
+        PL->data[i-1].x=x.x;
         PL->length++;
     }
     return (1);
@@ -83,4 +89,3 @@ int Delete_SeqList(PSeqList PL,int i)
       PL->length--;
       return(1);    
 }
-

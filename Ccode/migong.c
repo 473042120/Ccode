@@ -1,5 +1,7 @@
- #include ".h/zhanjiejuemigong.c"
-// #include ".h/duiliejiejuemigong.c"
+//  #include ".h/zhanjiejuemigong.c"
+#include ".h/SeqQueuemaze.h"
+
+
 
 int main()
 {
@@ -14,7 +16,7 @@ int main()
        1,0,1,1,0,0,1,1,0,1,
        1,1,1,1,1,1,1,1,1,1};
     xianshi (maze);
-    mazepath ( maze,move,1,1);
+    mazepath ( maze,move,1,1,6,8);
     printf("\n");
    return 0;
 }

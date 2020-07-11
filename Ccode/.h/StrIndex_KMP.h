@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>   //字符串 kmp算法
 #define MAXSIZE 1000
 //kmp算法 BF的改进算法
 int StrIndex_KMP (char *s ,char *t ,int pos)//从串s的第pos个字符开始找首次与串t相等的子串

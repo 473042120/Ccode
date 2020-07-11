@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>//递归
 
 int jieji (int n)  //求阶级
 {
@@ -70,12 +70,19 @@ void ConverseStrt (char *str ,int start,int end)
     
 }
 
-//迷宫递归
 
-#define m  6
-#define n  8
-#include <malloc.h>
-#include "zhanjiejuemigong.c"
+
+
+
+
+
+
+//迷宫递归
+#define m  6                    //迷宫
+#define n  8                    //迷宫
+#include <malloc.h>             //迷宫
+#include "zhanjiejuemigong.c"   //迷宫
+
 int path (int maze[][n+2],item move[],int x,int y,int step)
 {
    int i;
