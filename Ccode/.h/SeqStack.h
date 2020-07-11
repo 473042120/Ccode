@@ -3,12 +3,7 @@
 #define MAXSIZE 100
 
 typedef struct {
-   int x;
-} DataType; 
-
-
-typedef struct {
-    DataType  data[MAXSIZE];//这里的int可以自定义
+    int data[MAXSIZE];//这里的int可以自定义
     int top;
 }SeqStack, *PSeqStack;
 
@@ -35,27 +30,27 @@ int Empty_SeqStack (PSeqStack S)
 
 //入栈
 
-int Push_SeqStack(PSeqStack S, DataType  x)//x的数据类型可自己定义
+int Push_SeqStack(PSeqStack S, int x)//x的数据类型可自己定义
 {
     if(S->top==MAXSIZE-1)
       return 0;
     else
     {
         S->top++;
-        S->data[S->top].x=x.x;
+        S->data[S->top]=x;
       return 1;
     }
 }
 
 //出栈
 
-int Pop_SeqStack(PSeqStack S, DataType  *x)//x的数据类型自定义
+int Pop_SeqStack(PSeqStack S, int *x)//x的数据类型自定义
 {
     if(Empty_SeqStack (S))
     return 0;
     else 
     {
-        x->x=S->data[S->top].x;
+        *x=S->data[S->top];
         S->top--;
         return 1;
     }
@@ -63,20 +58,20 @@ int Pop_SeqStack(PSeqStack S, DataType  *x)//x的数据类型自定义
 
 //取栈顶元素
 
-int GetTop_SeqStack(PSeqStack S, DataType  *x)//x类型自定义
+int GetTop_SeqStack(PSeqStack S, int *x)//x类型自定义
 {
     if(Empty_SeqStack(S))
      return 0;
     else
     {
-        x->x =S->data[S->top].x;
+        *x =S->data[S->top];
     return 1;
     }  
 }
 
 //销毁栈
 
-void Destroy_SeqStack (PSeqStack * S)
+void Destroy_SeqStack (PSeqStack *S)
 {
   if(*S)
    free(*S);

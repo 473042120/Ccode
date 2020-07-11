@@ -1,7 +1,7 @@
 #include ".h/SeqQueue.h"
 
 void Array_LeftCircle_Move(int A[],int n,int k)//n代表数组中存储的元素个数，k代表循环左移动k位
-{   Datatype a;
+{  
     int i;
     PSeqQueue Q=Init_SeqQueue();
     for(i=0;i<k;i++) In_SeqQueue(Q,A[i]);
@@ -21,18 +21,18 @@ void YangHui_trangle(int n)
     int s=0;
     int i;
     PSeqQueue sq=Init_SeqQueue();
-    Init_SeqQueue(sq,1);
-    Init_SeqQueue(sq,1);
-    for(i=1;i<=n;i++,s=0)
+    In_SeqQueue(sq,1);
+    In_SeqQueue(sq,1);
+    for(i=1;i<=n;i++,sq=0)
     {  
         printf("\n");
         for(int k=0;k<40-4*i;k+=2) printf("");
-        Init_SeqQueue(sq,0);
+        In_SeqQueue(sq,0);
         for(int j=1;j<=i+2;j++)
         {
             int t;
             Out_SeqQueue(sq,0);
-            Init_SeqQueue(sq,s+t);
+            In_SeqQueue(sq,s+t);
             s=t;
             if(j!=i+2) printf("%4d",s);
         }
