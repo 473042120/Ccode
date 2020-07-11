@@ -40,3 +40,28 @@ void  GetNext(char *t ,int next[])
         
     }
 }
+
+void GetNext_Recursion (char *t,int next[],int L)
+{//求模式t的next的值并存入nxet数组中，参数t为模式串，L为模式串的长度（t[0]），算法结束时，字符串t的next数组值保存在数组next[]中，从下标为1开始存储
+   if(L==1)
+   {
+       next [1]=0;
+       return ;
+   }
+   GetNext_Recursion(t,next,L-1);
+   int k=next[L-1];
+   while(true)
+   {
+       if(t[k]==t[L-1])
+       {
+           next[L]=k+1;
+           return ;
+       }
+       k=next[k];
+       if(k==0)
+       {
+           next[L]=1;
+           return;
+       }
+   }
+}
