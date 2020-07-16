@@ -29,3 +29,4 @@ int  pingfang(long int i,long int j)
    // }
    // return n;
 }
+
