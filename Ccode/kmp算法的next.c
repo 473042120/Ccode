@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include <stdlib.h>
 void shuzi (int next[],int j)
 {  
     int i=0;
@@ -69,13 +70,11 @@ void GetNext_Recursion (char *t,int next[],int L)
 }
 void main()//'9','a','b','c','a','b','c','a','b','c'
 {   
+    int t[50];  
     char cuan[10]={'9','a','b','c','a','a','b','a','b','c'};
-    int n[50];
-    int i=0;
-    // scanf("%s",cuan);
     zifu(cuan);
-    GetNext(cuan,n);
-    shuzi(n,8);
-    GetNext_Recursion(cuan,n,1);
-    shuzi(n,8);    
+    GetNext_Recursion(cuan,t,9);
+    shuzi(t,8); 
+    GetNext(cuan,t);
+    shuzi(t,8);    
 }
