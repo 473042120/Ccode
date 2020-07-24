@@ -7,6 +7,7 @@ void  quyu(int a,int b)//a对b取余
      printf("%d\n",c);
 }
 
+
 void f (int n[])//函数传递的形式测试
 {
    n[1]=1;

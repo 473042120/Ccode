@@ -68,10 +68,10 @@ void GetNext_Recursion (char *t,int next[],int L)
        }
    }
 }
-void main()//'9','a','b','c','a','b','c','a','b','c'
+void main()//'9','a','b','c','a','b','c','a','b','c'{'9','a','b','c','a','a','b','a','b','c'};
 {   
     int t[50];  
-    char cuan[10]={'9','a','b','c','a','a','b','a','b','c'};
+    char cuan[10]="9abcaababc";
     zifu(cuan);
     GetNext_Recursion(cuan,t,9);
     shuzi(t,8); 
