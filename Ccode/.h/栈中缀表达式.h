@@ -2,14 +2,13 @@
 #include<malloc.h>
 #define MAXSIZE 100
 
-typedef struct {
-    int data[MAXSIZE];//这里的int可以自定义
+typedef struct 
+{
+    char data[MAXSIZE];
     int top;
 }SeqStack, *PSeqStack;
 
-//初始化空栈
-
-PSeqStack Init_SeqStack(void)
+PSeqStack Init_SeqStack(void)//初始化 
 {
     PSeqStack S;
     S=(PSeqStack)malloc(sizeof(SeqStack));
@@ -18,9 +17,7 @@ PSeqStack Init_SeqStack(void)
     return S;
 }
 
-//判栈空
-
-int Empty_SeqStack (PSeqStack S)
+int Empty_SeqStack (PSeqStack S)//判断栈空 
 {
     if(S->top==-1)
         return 1;
@@ -28,9 +25,7 @@ int Empty_SeqStack (PSeqStack S)
         return 0;
 }
 
-//入栈
-
-int Push_SeqStack(PSeqStack S,int x)//x的数据类型可自己定义
+int Push_SeqStack(PSeqStack S,char x)//入栈 
 {
     if(S->top==MAXSIZE-1)
       return 0;
@@ -42,9 +37,7 @@ int Push_SeqStack(PSeqStack S,int x)//x的数据类型可自己定义
     }
 }
 
-//出栈
-
-int Pop_SeqStack(PSeqStack S,char *x)//x的数据类型自定义
+int Pop_SeqStack(PSeqStack S,char *x)//出栈 
 {
     if(Empty_SeqStack (S))
     return 0;
@@ -56,9 +49,7 @@ int Pop_SeqStack(PSeqStack S,char *x)//x的数据类型自定义
     }
 }
 
-//取栈顶元素
-
-int GetTop_SeqStack(PSeqStack S,char *x)//x类型自定义
+int GetTop_SeqStack(PSeqStack S,char *x)//取栈顶元素 
 {
     if(Empty_SeqStack(S))
      return 0;
@@ -69,13 +60,12 @@ int GetTop_SeqStack(PSeqStack S,char *x)//x类型自定义
     }  
 }
 
-//销毁栈
 
-void Destroy_SeqStack (PSeqStack * S)
+void Destroy_SeqStack (PSeqStack *S)//销毁栈 
 {
   if(*S)
-   free(*S);
    *S=NULL;
+   free(S);
    return;
 }
 
@@ -104,25 +94,21 @@ int priority (char op)
 
 typedef char DataType;
 
-int infix_exp_value(char *infixexp,char *postfixexp)
-{
+int  infix_exp_value(char *infixexp,char *postfixexp)
+{  
     PSeqStack S;
     char c,w, topelement;
     S=Init_SeqStack();
-    if(!S)
-    {
-        printf("初始化失败");
-        return 0;
-    }
     Push_SeqStack(S,'#');
     w=*infixexp;
-    while((GetTop_SeqStack(S,&c),c)!='#'||'w'!='#')
-    {
+    while((GetTop_SeqStack(S,&c),c)!='#'||w!='#')
+    {    
         if( IsNum(w))
         {
             *postfixexp=w;
             postfixexp++;
             w=*(++infixexp);
+         
         }
         else
         {
@@ -132,9 +118,8 @@ int infix_exp_value(char *infixexp,char *postfixexp)
                 w=*(++infixexp);
             }
             else 
-            {
-                if((GetTop_SeqStack(S,&c),c) == '(' 
-                || priority((GetTop_SeqStack(S,&c),c)<priority(w)))
+            
+                if((GetTop_SeqStack(S,&c),c) == '('  || priority((GetTop_SeqStack(S,&c),c))<priority(w))
                 {
                     Push_SeqStack(S,w);
                     w=*(++infixexp);
@@ -147,9 +132,8 @@ int infix_exp_value(char *infixexp,char *postfixexp)
                 }
             }
         }
+	
         *postfixexp='#';
         *(++postfixexp)='\0';
         postfixexp++;
     }
-    
-}
