@@ -3,6 +3,10 @@
 #define MaxTreeNodeNum 100
 
 typedef char DataType;
+void Visit(char t)
+{
+   printf("%c",t);
+}
 typedef struct {
     DataType data[MaxTreeNodeNum];
     int n;
@@ -12,11 +16,6 @@ typedef struct bonde{
     DataType data;
     struct bonde *lchild,*rchild;
 }Bonde,*BTree;
-
-void Visit(DataType t)
-{
-   
-}
 
 void PreOrder (BTree t)//先序遍历的递归算法
 {
