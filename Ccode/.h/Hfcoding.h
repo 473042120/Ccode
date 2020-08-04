@@ -1,5 +1,6 @@
 #include<stdio.h>
 #define N 20
+
 typedef int DataType;
 typedef struct {
 	char ch;
