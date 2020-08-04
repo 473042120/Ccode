@@ -71,7 +71,7 @@ void GetNext_Recursion (char *t,int next[],int L)
 void main()//'9','a','b','c','a','b','c','a','b','c'{'9','a','b','c','a','a','b','a','b','c'};
 {   
     int t[50];  
-    char cuan[10]="8abaaabab";
+    char cuan[10]="8abcacbca";
     zifu(cuan);
     GetNext_Recursion(cuan,t,8);
     shuzi(t,7); 
