@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<malloc.h>
+#include<stdlib.h>
 
 typedef struct 
 {
@@ -23,7 +25,7 @@ BinSTree BSTreeSearch(BinSTree t,KeyType k)
 	if(t->elem.key>k)
 	return BSTreeSearch (t->lchild,k);
 	else
-	return BSTreeSearch (t->rchile,k);
+	return BSTreeSearch (t->rchild,k);
 }
 
 void BSTreeInsert (BinSTree * t,KeyType k)
@@ -38,7 +40,7 @@ void BSTreeInsert (BinSTree * t,KeyType k)
 		return ;
 	}
 	else
-	    if(k<((*t)->elem.key)
+	    if(k<((*t)->elem.key))
 	      BSTreeInsert(&((*t)->lchild),k);
 	    else
 	      BSTreeInsert(&((*t)->rchild),k);
