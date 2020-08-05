@@ -29,7 +29,8 @@ typedef struct {
 
 void Select (Htnode * H ,int n,int * s1,int * s2)
 {
-	;
+	/*对数组huftree[1..n+i-1]中无双亲的结点权值进行排序，s1,s2
+		将是无双亲且权重最小的两个结点下标*/;
 }
 
 void HuFcoding(Htnode huftree[],CodeType cd[],int w[],int n)
