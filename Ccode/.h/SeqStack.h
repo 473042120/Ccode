@@ -2,8 +2,10 @@
 #include<malloc.h>
 #define MAXSIZE 100
 
+typedef int DataType;//顺序栈中存储的数据类型
+
 typedef struct {
-    int data[MAXSIZE];//这里的int可以自定义
+    DataType data[MAXSIZE];//这里的int可以自定义
     int top;
 }SeqStack, *PSeqStack;
 
