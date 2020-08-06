@@ -1,131 +1,88 @@
+/*静态堆存储*/
 #include<stdio.h>
+#include<stdlib.h>
 #include<malloc.h>
+#define MAXNAME 100
+#define SMAX 100
+
+typedef struct Hstring
+{//带串长度的索引表
+    char name[MAXNAME];
+    int length;
+    char* stradr;
+}LNode;
 
 typedef struct 
-{
-    char*p_ch;
+{//末尾指针的索引表
+ char name[MAXNAME];
+ char *stradr,*enadr;   
+}ENode;
+
+char store[SMAX+1];
+int free;
+
+typedef struct 
+{//串的存储映像类型
     int length;
+    int stradr;
 }Hstring;
 
-//串常量赋值
-int StrAssign (Hstring * s1,char * s2)
+int StrLength(char * s)
 {
-   int i;char *pc;
-   if(s1->p_ch)free (s1->p_ch);
-   for(i=0,pc=s2;*pc!='\0';i++,pc++);
-   if(i==0)
-   {
-       s1->p_ch=0;s1->length=0;
-       return 0;
-   }
-   if(!(s1->p_ch=(char *)malloc(i* sizeof(char))))
-   {
-       printf("堆空间不足，赋值失败！\n");
-       return 0;
-   }
-   for(int j=0; j<i;j++)
-   s1->p_ch[j]=s2[j];
-   s1->length=i;
-   return 1;
+    ;
 }
 
-
-//赋值一个串
-
-int StrCopy(Hstring *s1,Hstring s2)
-{
-    if(s2.length<=0) return 0;
-    if(!(s1->p_ch=(char *)malloc(s2.length*sizeof(char))))
-    {  
-       printf("堆空间不足，赋值失败！\n");
-       return 0;
-    }
-    for(int i=0;i<s2.length;i++)   s1->p_ch[i]=s2.p_ch[i];
-    s1->length=s2.length;
-    return 1;
-}
-
-
-//求子串
-
-int SubString(Hstring *Sub,Hstring S,int pos,int len)
-{ //用Sub返回串s的第pos个字符起长度为len的子串；其中，1<=pos<=StrLength(S)且0<=len<=StrLength(S)-pos+1
-    int i;
-    if(pos<1||pos>S.length||len<0||len>S.length-pos+1)
+int StrAssign(Hstring*s1,char *s2)
+{/*串常量赋值 将一个字符型数组s2中的字符串送入堆store中，free是
+自由区的指针，正常操作返回1 */
+    int i=0,len;
+    len=StrLength(s2);
+    if(len<0||free+len-1>SMAX)
     return 0;
-    if(Sub->p_ch)free(Sub->p_ch);
-    if(!len)
-    {
-        Sub->p_ch=0;
-        Sub->length=0;
+    else{
+        for(i=0;i<len;i++)
+        store[free+i]=s2[i];
+        s1->stradr=free;
+        s1->length=len;
+        return 1;
     }
+}
+
+int StrCopy(Hstring*s1,Hstring s2)
+{/* 赋值一个串 该运算将堆store中的一个串s2复制到一个
+新串s1中，正常操作返回1 */
+    int i;
+    if(free+s2.length-1>SMAX)
+    return 0;
     else
     {
-        Sub->p_ch=(char *)malloc(len *sizeof(char));
-        for(i=0;i<len;i++) Sub->p_ch[i]=S.p_ch[pos-1+i];
-        Sub->length=len;        
-    }
-    return 1;
+       for(i=0;i<s2.length;i++)
+         store[free+i]=store[s2.stradr+i];
+         s1->length=s2.length;
+         s1->stradr=free;
+         free=free+s2.length;
+         return 1;
+    }   
 }
 
-//串连接
-
-int StrContact (Hstring*t,Hstring s1,Hstring s2)
-{//*t保存字符串s1,s2连接的新串
-    if(t->p_ch)  free(t->p_ch);
-    if(!(t->p_ch=(char*)malloc((s1.length+s2.length)*sizeof(char))))
-    {
-        printf("堆空间不足，串连接失败！\n");
-        return 0;
-    }
-    for(int i=0;i<s1.length;i++) t->p_ch[i]=s1.p_ch[i];
-    t->length=s1.length+s2.length;
-    for(int i=s1.length;i< t->length;i++) t->p_ch[i]=s2.p_ch[i-s1.length];
-    return 1;
-}
-
-//在目标串的指定位置前插入字符串
-
-int StrInsert(Hstring *s,int pos,Hstring t)
-{
+int StrSub(Hstring*t, Hstring s,int i,int len)
+{/*求子串 该运算将串s中第i个字符开始的长度为len的子串送到
+一个新串t中，正常操作返回1 */
     int i;
-    if(pos<1 ||pos>s->length+1)return 0;
-    if(t.length==0)return 1;
-    if(!(s->p_ch=(char *)realloc(s->p_ch,(s->length+t.length)*sizeof(char))))
+    if(i<0||len<0||len>s.length-i+1)
+    return 0;
+    else
     {
-      printf("堆空间不足，插入失败！\n");
-      return 0;
+        t->length=len;
+        t->stradr=s.stradr+i-1;
+        return 1;
     }
-    for(i=s->length-1;i>=pos-1;i--)
-    {
-        s->p_ch[i+t.length]=s->p_ch[i];
-    }
-    for(i=pos-1;i<=pos+t.length-2;i++)
-    {
-        s->p_ch[i]=t.p_ch[i-pos+1];
-    }
-    s->length=s->length+t.length;
-    return 1;
 }
 
-//置空串
-
-int Init_String (Hstring *s)
-{
-   s->p_ch=0;
-   s->length=0;
-   return 1;
-}
-
-//销毁串
-
-int Destory_String(Hstring *s)
-{
-        if(s->length)
-    {
-        free(s->p_ch);
-        s->p_ch=0;
-        s->length=0;
-    }
-    return 1;
+void StrConcat(Hstring s1,Hstring s2,Hstring *s)
+{//串连接
+    Hstring t;
+    StrCopy (s,s1);
+    StrCopy(&t,s2);
+    s->length=s1.length+s2.length;
 }
