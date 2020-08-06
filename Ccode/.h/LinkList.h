@@ -68,8 +68,9 @@ LinkList Locate_LinkList_Pos(LinkList H,int i)
     return(p);
 }
 
-LinkList Locate_LinkList_Value(LinkList H,int x)//x数据类型可更改
-{//按值查找
+LinkList Locate_LinkList_Value(LinkList H,DataType x)
+{/*按值查找   入口：单链表头指针，检索元素，
+  出口：找到后返回指针否则返回NULL*/ 
     LinkList p=H->next;
     while (p && p->data!=x)
     {
@@ -77,6 +78,50 @@ LinkList Locate_LinkList_Value(LinkList H,int x)//x数据类型可更改
     }
     return(p);
 }
+
+int Insert_LinkList(LinkList H,int i,DataType x)//x数据类型可更改
+{//插入在单链表H的第i个位置前插入值为x的结点，入口：单链表，插入位置，插入元素
+ //返回：成功标志，0不成功，1成功
+    LinkList p,q;
+    p=Locate_LinkList_Pos(H,i-1);/*找到第i-1个结点地址*/
+    if(!p)
+    {
+        printf("i有误");
+        return(0);
+    }
+    q=(LinkList)malloc(sizeof(LNode));
+    if(!q)
+    {
+        printf("申请空间失败");
+        return(0);
+    }
+    q->data=x;
+    q->next=p->next;
+    p->next=q;
+    return 1;
+}
+
+int Dete_LinkList(LinkList H,int i)
+{//删除单链表H上的第i个结点，入口：单链表，删除元素序号，
+//返回：成功1,不成功0；
+    LinkList p,q;
+    if(H==NULL || H->next==NULL)
+    {
+        printf("链表不存在或者空表不能删除");
+        return (0);
+    }
+    p=Locate_LinkList_Pos(H,i-1);
+    if(p==NULL || p->next==NULL)
+    {
+        printf("参数i错");
+        return(0);
+    }
+    q=p->next;
+    p->next=q->next;
+    free(q);
+    return(1);
+}
+
 
 LinkList fuzhi (LinkList H)
 {   int i,len;
@@ -127,55 +172,4 @@ int main()
     H2=fuzhi(H2);
     p=lianjie(H1,H2);
     xianshi(p);
-}
-
-
-
-
-
-
-
-//插入
-
-int Insert_LinkList(LinkList H,int i,int x)//x数据类型可更改
-{
-    LinkList p,q;
-    p=Locate_LinkList_Pos(H,i-1);
-    if(!p)
-    {
-        printf("i有误");
-        return(0);
-    }
-    q=(LinkList)malloc(sizeof(LNode));
-    if(!q)
-    {
-        printf("申请空间失败");
-        return(0);
-    }
-    q->data=x;
-    q->next=p->next;
-    p->next=q;
-    return 1;
-}
-
-//删除
-
-int Dete_LinkList(LinkList H,int i)
-{
-    LinkList p,q;
-    if(H==NULL || H->next==NULL)
-    {
-        printf("链表不存在或者空表不能删除");
-        return (0);
-    }
-    p=Locate_LinkList_Pos(H,i-1);
-    if(p==NULL || p->next==NULL)
-    {
-        printf("参数i错");
-        return(0);
-    }
-    q=p->next;
-    p->next=q->next;
-    free(q);
-    return(1);
 }
