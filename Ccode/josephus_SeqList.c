@@ -2,9 +2,11 @@
 #include <malloc.h>
 #include ".h/SeqList.h"
 #define MAXSIZE 100
+typedef int DataType;
 
 int josephus_SeqList(PSeqList josephus_Seq, int s, int m)
-{
+{//入口：已经存放数据的顺序表，起始序号s，计数值m
+ //出口：1成功0失败
     int s1, i, w;
     if (!josephus_Seq->length)
     {
@@ -17,44 +19,19 @@ int josephus_SeqList(PSeqList josephus_Seq, int s, int m)
     {
         s1 = (s1 + m - 1) % i;
         w = josephus_Seq->data[s1];
-        if (i % 20 == 0)
-            printf("\n");
+        if (i % 5 == 0)  printf("\n");
         printf("%d\t", w);
         Delete_SeqList(josephus_Seq, s1 + 1);
     }
     return (1);
 }
 
-PSeqList zidongfuzhi(PSeqList H)
-{
-    int i;
-    H = (PSeqList)malloc(sizeof(PSeqList) * MAXSIZE);
-    for (i = 0; i < 100; i++)
-    {
-        H->data[i] = i;
-        H->length++;
-    }
-    return (H);
-}
-
-PSeqList fuzhi(PSeqList H)
-{
-    int i;
-    H = (PSeqList)malloc(sizeof(PSeqList) * MAXSIZE);
-    for (i = 0; i < 10; i++)
-    {
-        printf("输入数值");
-        scanf("%d", &H->data[i]);
-        H->length++;
-    }
-    return (H);
-}
-
 int main()
 {
     int i;
     PSeqList PL;
-    PL = (PSeqList)malloc(sizeof(PSeqList) * 100);
+    PL = (SeqList*)malloc(sizeof(PSeqList));
+    //SeqList*可以替换成PSeqList
     PL = zidongfuzhi(PL);
     josephus_SeqList(PL, 2, 5);
 }
