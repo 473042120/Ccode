@@ -23,6 +23,7 @@ void zifu (char *t)
     }
     printf("\n");
 }
+
 void GetNext(char *t ,int next[])
 {
     int i=1,j=0;
