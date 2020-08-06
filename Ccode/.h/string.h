@@ -62,7 +62,7 @@ int SubString(Hstring *Sub,Hstring S, int pos,int len)
   else
   {
       Sub->p_ch=(char*)malloc(len*sizeof(char));
-      for(i=0;i<len;i++) Sub->p[i]=S.p_ch[pos-1+i];
+      for(i=0;i<len;i++) Sub->p_ch[i]=S.p_ch[pos-1+i];
       Sub->length=len;
   }
   return 1;
