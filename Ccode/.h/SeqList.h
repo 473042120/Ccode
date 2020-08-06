@@ -81,7 +81,7 @@ int Delete_SeqList(PSeqList PL,int i)
       return(1);    
 }
 
-int zidongfuzhi(PSeqList L)
+void zidongfuzhi(PSeqList L)
 {//为顺序表自动赋值0<=i<=99
     int i;
     PSeqList H;
@@ -94,7 +94,7 @@ int zidongfuzhi(PSeqList L)
     }
 }
 
-int fuzhi(PSeqList L)
+void fuzhi(PSeqList L)
 {//为顺序表手动赋10个值 位置从0开始到9结束
     int i;
     PSeqList H;

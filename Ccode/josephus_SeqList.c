@@ -32,6 +32,6 @@ int main()
     int i;
     PSeqList PL;
     PL=Init_SeqList();
-    zidongfuzhi(PL);
+    fuzhi(PL);
     josephus_SeqList(PL, 0, 5);
 }

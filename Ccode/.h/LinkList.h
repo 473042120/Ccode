@@ -50,12 +50,12 @@ int Length_LinkList (LinkList H)
 
 LinkList Locate_LinkList_Pos(LinkList H,int i)
 {/*按序号查找  入口：单链表头指针，查找的位置 
-             出口：i不存在返回NULL，i==0返回头指针，否则返回第8
+  出口：i不存在返回NULL，i==0返回头指针，否则返回第i个结点的指针*/
 
     LinkList p;
     int j;
     p=H;  j=0;
-    while(p && j<i)
+    while(p && j<i)  //查找第i个结点
     {
         p=p->next;
         j++;
