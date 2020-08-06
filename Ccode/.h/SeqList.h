@@ -87,7 +87,7 @@ int zidongfuzhi(PSeqList L)
     PSeqList H;
     Init_SeqList(H);
     H=L;
-    for (i = 0; i < 100; i++)
+    for (i = 0; i <100; i++)
     {
         H->data[i] = i;
         H->length++;

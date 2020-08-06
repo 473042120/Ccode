@@ -18,10 +18,10 @@ int josephus_SeqList(PSeqList josephus_Seq, int s, int m)
     printf("输出约瑟夫序列：");
     for (i = josephus_Seq->length; i > 0; i--)
     {
-        s1 = (s1 + m - 1) % i;
-        w = josephus_Seq->data[s1];
         if (i % 5 == 0)  printf("\n");
+        w = josephus_Seq->data[s1];
         printf("%d\t", w);
+        s1 = (s1 + m - 1) % i;
         Delete_SeqList(josephus_Seq, s1 + 1);
     }
     return (1);
@@ -32,6 +32,6 @@ int main()
     int i;
     PSeqList PL;
     PL=Init_SeqList();
-    fuzhi(PL);
+    zidongfuzhi(PL);
     josephus_SeqList(PL, 0, 5);
 }
