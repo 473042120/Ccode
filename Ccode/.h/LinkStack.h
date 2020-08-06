@@ -1,21 +1,22 @@
 #include <stdio.h> //栈链式存储
 #include <malloc.h>
+#include <stdlib.h>
+
+typedef int DataType;
 
 typedef struct node //结点结构
 {
-    int data; //int可更改
+    DataType data;
     struct node *next;
 } StackNode, *PStackNode;
 
 typedef struct
-{ //栈
+{ //栈定义
     PStackNode top;
 } LinkStack, *PLinkStack;
 
-//初始化空栈
-
 PLinkStack Init_LinkStack(void)
-{
+{//初始化空栈
     PLinkStack S;
     S = (PLinkStack)malloc(sizeof(LinkStack));
     if (S)
@@ -23,20 +24,16 @@ PLinkStack Init_LinkStack(void)
     return (S);
 }
 
-//判断栈空
-
 int Empty_LinkStack(PLinkStack S)
-{
+{//判断栈空
     if (S->top == NULL)
         return 0;
     else
         return 1;
 }
 
-//入栈
-
-int Push_LinkStack(PLinkStack S, int x)
-{ //进栈，入口参数：链栈指针，进栈元素，返回值：1表示成功，0表示失败
+int Push_LinkStack(PLinkStack S, DataType x)
+{ //入栈进栈，入口参数：链栈指针，进栈元素，返回值：1表示成功，0表示失败
     PStackNode P;
     P = (PStackNode)malloc(sizeof(StackNode));
     if (!P)
@@ -50,10 +47,8 @@ int Push_LinkStack(PLinkStack S, int x)
     return (1);
 }
 
-//出栈
-
-int Pop_LinkStack(PLinkStack S, int *x)
-{
+int Pop_LinkStack(PLinkStack S, DataType *x)
+{//出栈
     PStackNode P;
     if (Empty_LinkStack(S))
     {
@@ -67,10 +62,8 @@ int Pop_LinkStack(PLinkStack S, int *x)
     return (1);
 }
 
-//取栈顶元素
-
-int GetTop_LinkStack(PLinkStack S, int *x)
-{
+int GetTop_LinkStack(PLinkStack S, DataType *x)
+{//取栈顶元素
     if (Empty_LinkStack(S))
     {
         printf("栈空");
@@ -80,10 +73,8 @@ int GetTop_LinkStack(PLinkStack S, int *x)
     return 1;
 }
 
-//销毁栈
-
 void Destroy_LinkStack(PLinkStack *LS)
-{
+{//销毁栈
     PStackNode p, q;
     if (*LS)
     {
