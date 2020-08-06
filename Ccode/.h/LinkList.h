@@ -1,5 +1,5 @@
 #include <stdio.h> //单链表 线性表的链式存储结构
-#include <malloc.h>
+#include <malloc.h>//动态链表
 #include<stdlib.h>
 
 typedef int DataType;
@@ -123,9 +123,10 @@ int Dete_LinkList(LinkList H,int i)
 }
 
 
-LinkList fuzhi (LinkList H)
+LinkList fuzhi (LinkList H)  //单链表赋值
 {   int i,len;
-    LinkList H_head=(LinkList)malloc(sizeof(LinkList));
+    LinkList H_head;
+    H_head=Creat_LinkList();
     LinkList H_new;
     H=H_head;
     H->next = NULL;
@@ -136,15 +137,15 @@ LinkList fuzhi (LinkList H)
         H_new=(LinkList)malloc(sizeof(LinkList));
         printf("输入数值");
         scanf("%d",&H_new->data);
-        H->next=H_new;//将尾节点指向新节点
         H_new->next=NULL;//新节点应该指向NULL
+        H->next=H_new;//将尾节点指向新节点
         H=H_new;//当前尾节点为新节点
     }
     return(H_head);
 }
 
 LinkList xianshi (LinkList H)
-{
+{//单链表显示
     LinkList p;
     p=H;
     p=p->next;
@@ -156,20 +157,41 @@ LinkList xianshi (LinkList H)
     printf("\n");
     return (0);
 }
-//两个循环单链表 H1，H2的链接操作
 
 LinkList lianjie (LinkList H,LinkList R)
-{  LinkList H_head=H;
-   while(H->next!=NULL) H=H->next;
+{  //两个循环单链表 H1，H2的链接操作
+   LinkList H_head=H;
+   while(H->next!=NULL) 
+   H=H->next;
    H->next=R->next;
    return H_head;
 }
 
-int main()
-{
-    LinkList H1,H2,p;
-    H1=fuzhi(H1);
-    H2=fuzhi(H2);
-    p=lianjie(H1,H2);
-    xianshi(p);
-}
+/*
+循环链表
+对两个循环单链表H1,H2进行链接操作，将H2的第一个元素结点
+接到H1的尾结点，链接表用尾指针R1,R2来标识
+p=R1->next;
+R1->next=R2->next->next;
+free(R2->next);
+R2->next=p;
+
+双向链表
+定义
+typedef struct node{
+    DataType data;
+    struct  node *prior,*next;
+}DoNode,Dete_LinkList;
+
+将*s插入到*p底前面
+s->prior=p->prior;
+p->prior->next=s;
+s->next=p;
+p->prior=s;
+
+删除*p
+p->prior->next=p->next;
+p->next->prior=p->prior;
+free(p);
+
+*/

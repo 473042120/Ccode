@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <malloc.h>
-#define MAXSIZE 100
-
+typedef int DataType;
 typedef struct node
 {
-   int data;
+   DataType data;
    struct node *prior,*next;
 }DuNode,*DLinkList;
 

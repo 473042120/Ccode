@@ -1,7 +1,5 @@
-#include <stdio.h> //约瑟夫问题  顺序表解决问题
-#include <malloc.h>
-#include ".h/SeqList.h"
-#define MAXSIZE 100
+#include ".h/SeqList.h"//约瑟夫问题  顺序表解决问题
+#include".h/LinkList.h"
 typedef int DataType;
 
 int josephus_SeqList(PSeqList josephus_Seq, int s, int m)
@@ -25,6 +23,37 @@ int josephus_SeqList(PSeqList josephus_Seq, int s, int m)
         Delete_SeqList(josephus_Seq, s1 + 1);
     }
     return (1);
+}
+
+int josephus_LinkList (LinkList josephus_Link ,int s,int m)
+{
+  LinkList p,pre;
+  int count;
+  if(!josephus_Link)
+  {
+    printf("表中无元素");
+    return 0;
+  }
+  p=josephus_Link;
+  for(count=1;count<s;count++)
+  p=p->next;
+  printf("输出约瑟夫序列");
+  while(p!=p->next)
+  {
+      pre=p->next;
+      while(pre->next!=p) pre=pre->next;
+      for(count=1;count<m;count++){
+          pre=p;
+          p=p->next;
+      }
+      printf("%d\t",p->data);
+      pre->next=p->next;
+      free(p);
+      p=pre->next;
+  }
+  printf("%d\t",p->data);
+  free(p);
+  return 1;
 }
 
 int main()
