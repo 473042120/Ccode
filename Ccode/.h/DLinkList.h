@@ -9,14 +9,14 @@ typedef struct node
 
 DLinkList fuzhi (DLinkList H)
 {   int i,len;
-    DLinkList H_head=(DLinkList)malloc(sizeof(DLinkList));
+    DLinkList H_head=(DLinkList)malloc(sizeof(DuNode));
     DLinkList H_new;
     H=H_head;
     printf("请输入节点的个数:");
     scanf("%d",&len);
     for (i=0;i<len;i++)
     {   
-        H_new=(DLinkList)malloc(sizeof(DLinkList));
+        H_new=(DLinkList)malloc(sizeof(DuNode));
         printf("输入数值");
         scanf("%d",&H_new->data);
         H_new->prior=H;

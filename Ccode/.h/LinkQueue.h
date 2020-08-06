@@ -1,8 +1,10 @@
 #include <stdio.h>  //队列链式存储
 #include <malloc.h>
 
+typedef int DataType;
+
 typedef struct node {
-   int  data;//存储数据
+   DataType  data;//存储数据
    struct node*next;  
 }Qnode,*PQNode;
 
@@ -15,7 +17,7 @@ typedef struct{
 PLinkQueue Init_LinkQueue()
 {
     PLinkQueue Q;
-    Q=(PLinkQueue)malloc(sizeof(Init_LinkQueue));
+    Q=(PLinkQueue)malloc(sizeof(LinkQueue));
     if(Q)
     {
         Q->front=NULL;
@@ -26,9 +28,9 @@ PLinkQueue Init_LinkQueue()
 
 //判断队列空
 
-int Empty_LinkQueue (PLinkQueue (Q))
+int Empty_LinkQueue (PLinkQueue Q)
 {
-    if(Q&&Q->front==NULL&&Q->rear==NULL)
+    if(Q && Q->front==NULL && Q->rear==NULL)
     return 1;
     else 
     return 0;
@@ -36,7 +38,7 @@ int Empty_LinkQueue (PLinkQueue (Q))
 
 //入队
 
-int In_LinkQueue (PLinkQueue Q,int x)
+int In_LinkQueue (PLinkQueue Q,DataType x)
 {
    PQNode p;
    p=(PQNode)malloc(sizeof(Qnode));
@@ -59,7 +61,7 @@ int In_LinkQueue (PLinkQueue Q,int x)
 
 //出队
 
-int out_LinkQueue(PLinkQueue Q,int*x)
+int out_LinkQueue(PLinkQueue Q,DataType*x)
 {
     PQNode p;
     if(Empty_LinkQueue(Q))
@@ -78,7 +80,7 @@ int out_LinkQueue(PLinkQueue Q,int*x)
 
 //读队头元素
 
-int Front_LinkQueue(PLinkQueue Q,int*x)
+int Front_LinkQueue(PLinkQueue Q,DataType*x)
 {
     if(Empty_LinkQueue(Q))
     {
@@ -89,20 +91,21 @@ int Front_LinkQueue(PLinkQueue Q,int*x)
     return 1;
 }
 
-// void  Destroy_LinkQueue(PLinkQueue *Q)
-// {
-//     PQNode p,s;
-//     if(*Q)
-//     {
-//         while(Q->front)
-//         {
-//             p=Q->front;
-//             Q->front=Q->front->next;
-// //报错expression must have pointer-to-struct-or-union type
-// //我认为的是队列Q还没创建所以没有指向就是根本没有这个队列肯定报错
-//             free(p);
-//         }
-//         free(*Q);
-//     }
-//     *Q=NULL;
-// }
+void  Destroy_LinkQueue(PLinkQueue * Q)
+{/*这里的Q是指针形变量指向队列所以要想引用队列需要加*
+又因为->优先级高所以要加括号,为了方便看所以让s=*Q */
+    PQNode p;
+    PLinkQueue s;
+    s=*Q;
+    if(s)
+    {
+        while(s->front)
+        {
+            p=s->front;
+            s->front=s->front->next;
+            free(p);
+        }
+        free(s);
+    }
+    *Q=NULL;
+}

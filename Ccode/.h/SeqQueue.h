@@ -2,8 +2,10 @@
 #include<malloc.h>
 #define MAXSIZE 100
 
+typedef int DataType;
+
 typedef struct {
-    int data[MAXSIZE];//存储数据
+    DataType data[MAXSIZE];//存储数据
     int front,rear;
 }SeqQueue,*PSeqQueue;
 
@@ -36,7 +38,7 @@ int Empty_SeqQueue (PSeqQueue Q)
 }
 
 //入队
-int In_SeqQueue(PSeqQueue Q,int x)
+int In_SeqQueue(PSeqQueue Q,DataType x)
 {
     if((Q->rear+1)%MAXSIZE==Q->front)
     {
@@ -52,7 +54,7 @@ int In_SeqQueue(PSeqQueue Q,int x)
 }
 
 //出队
-int Out_SeqQueue (PSeqQueue Q,int *x)
+int Out_SeqQueue (PSeqQueue Q,DataType *x)
 {
     if(Empty_SeqQueue(Q))
     {
@@ -69,7 +71,7 @@ int Out_SeqQueue (PSeqQueue Q,int *x)
 }
 //读队头元素
 
-int Front_SeqQueue(PSeqQueue Q,int *x)
+int Front_SeqQueue(PSeqQueue Q,DataType *x)
 {
     if(Q->front==Q->rear)
     {
@@ -86,18 +88,8 @@ int Front_SeqQueue(PSeqQueue Q,int *x)
 //销毁队列
 
 void Destroy_SeqQueue(PSeqQueue *Q)
-{
+{//调用时Destroy_SeqQueue（&Q）；
     if(*Q)
       free(*Q);
       *Q =NULL;
 }
-
-// main()
-// {
-//     PSeqQueue Q;
-//     Q=In_SeqQueue();
-//     .
-//     .
-//     .
-//     Destroy_SeqQueue(&Q);
-// }
