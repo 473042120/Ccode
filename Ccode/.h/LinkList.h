@@ -1,14 +1,82 @@
 #include <stdio.h> //单链表 线性表的链式存储结构
 #include <malloc.h>
-#define MAXSIZE 100
+#include<stdlib.h>
+
 typedef int DataType;
+
 typedef struct node
 {
-    int data;
+    DataType data;
     struct node*next;
 }LNode,*LinkList;
 
-//typedef struct node LNde,*LinkList; 第二种声明方法
+LinkList Creat_LinkList(void)
+{//创建空单链表 返回单链表头指针
+    LinkList H;
+    H=(LinkList)malloc(sizeof(LNode));
+    if(H)
+    H->next=NULL;
+    return H;
+}
+
+void Destroy_LinkList(LinkList * H)
+{//单链表的销毁 入口：单链表头指针的地址  调用时Destroy_LinkList(&H)；
+    LinkList p,q;
+    /*这里申请的是指针变量存储的是地址等价于
+    LNode *p,*q; */
+    p=*H;
+    while(p)
+    {
+        q=p;
+        p=p->next;
+        free(q);
+    }
+    *H=NULL;
+}
+
+int Length_LinkList (LinkList H)
+{//单链表求表长 入口：单链表头指针 出口：表长，-1单链表不存在
+    LinkList p=H;  //p指向头结点
+    int count=-1;  //H带头结点所以从-1开始
+    while(p)       //p所指的是count+1个结点
+    {
+        p=p->next;
+        count++;
+    }
+    return(count);
+}
+
+//查找操作
+
+LinkList Locate_LinkList_Pos(LinkList H,int i)
+{/*按序号查找  入口：单链表头指针，查找的位置 
+             出口：i不存在返回NULL，i==0返回头指针，否则返回第8
+
+    LinkList p;
+    int j;
+    p=H;  j=0;
+    while(p && j<i)
+    {
+        p=p->next;
+        j++;
+    }
+    if(j!=i || !p)
+    {
+        printf("参数i错或单链表不存在");
+        return (NULL);
+    }
+    return(p);
+}
+
+LinkList Locate_LinkList_Value(LinkList H,int x)//x数据类型可更改
+{//按值查找
+    LinkList p=H->next;
+    while (p && p->data!=x)
+    {
+        p=p->next;
+    }
+    return(p);
+}
 
 LinkList fuzhi (LinkList H)
 {   int i,len;
@@ -61,67 +129,11 @@ int main()
     xianshi(p);
 }
 
-//单链表的销毁
 
-void Destroy_LinkList(LinkList *H )
-{
-    LinkList p,q;
-    p=*H;
-    while(p)
-    {
-        q=p;
-        p=p->next;
-        free(q);
-    }
-    *H=NULL;
-}
 
-//单链表求表长
 
-int Length_LinkList (LinkList H)
-{
-    LinkList p=H;
-    int count=-1;
-    while(p)
-    {
-        p=p->next;
-        count++;
-    }
-    return(count);
-}
 
-//查找操作
-//按序号查找
 
-LinkList Locate_LinkList_Pos(LinkList H,int i)
-{
-    LinkList p;
-    int j;
-    p=H;  j=0;
-    while(p && j<i)
-    {
-        p=p->next;
-        j++;
-    }
-    if(j!=i || !p)
-    {
-        printf("参数i错或单链表不存在");
-        return (NULL);
-    }
-    return(p);
-}
-
-//按值查找
-
-LinkList Locate_LinkList_Value(LinkList H,int x)//x数据类型可更改
-{
-    LinkList p=H->next;
-    while (p && p->data!=x)
-    {
-        p=p->next;
-    }
-    return(p);
-}
 
 //插入
 
