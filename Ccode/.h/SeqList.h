@@ -81,27 +81,30 @@ int Delete_SeqList(PSeqList PL,int i)
       return(1);    
 }
 
-PSeqList zidongfuzhi(PSeqList H)
+int zidongfuzhi(PSeqList L)
 {//为顺序表自动赋值0<=i<=99
     int i;
-    H = (PSeqList)malloc(sizeof(PSeqList) * MAXSIZE);
+    PSeqList H;
+    Init_SeqList(H);
+    H=L;
     for (i = 0; i < 100; i++)
     {
         H->data[i] = i;
         H->length++;
     }
-    return (H);
 }
 
-PSeqList fuzhi(PSeqList H)
+int fuzhi(PSeqList L)
 {//为顺序表手动赋10个值 位置从0开始到9结束
     int i;
-    H = (PSeqList)malloc(sizeof(PSeqList) * MAXSIZE);
+    PSeqList H;
+    Init_SeqList(H);
+    H=L;
+    Init_SeqList(H);
     for (i = 0; i < 10; i++)
     {
         printf("输入数值");
-        scanf("%d", &H->data[i]);
+        scanf("%d",&H->data[i]);
         H->length++;
     }
-    return (H);
 }

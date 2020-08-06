@@ -7,6 +7,7 @@ typedef int DataType;
 int josephus_SeqList(PSeqList josephus_Seq, int s, int m)
 {//入口：已经存放数据的顺序表，起始序号s，计数值m
  //出口：1成功0失败
+ //约瑟夫问题是从s开始每隔m个
     int s1, i, w;
     if (!josephus_Seq->length)
     {
@@ -30,8 +31,7 @@ int main()
 {
     int i;
     PSeqList PL;
-    PL = (SeqList*)malloc(sizeof(PSeqList));
-    //SeqList*可以替换成PSeqList
-    PL = zidongfuzhi(PL);
-    josephus_SeqList(PL, 2, 5);
+    PL=Init_SeqList();
+    fuzhi(PL);
+    josephus_SeqList(PL, 0, 5);
 }
