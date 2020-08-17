@@ -5,6 +5,10 @@
 sudo apt-get install synaptic  卸载软件的软件下载
 sudo apt-get  purge  软件名   卸载软件的命令
 系统更新
+sudo apt-get update
+sudo apt-get install
+sudo apt-get upgrade
+sudo apt-get dist-upgrade   升级未被升级的软件
 安装输入法
 sudo apt-get  purge  ibus
 sudo aptitude install fcitx-bin fcitx-table fcitx-config-gtk fcitx-config-gtk2 fcitx-frontend-all
