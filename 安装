@@ -1,0 +1,203 @@
+更改软件源 推荐阿里云      
+安装已经下载好的软件 sudo dpkg -i 软件名 
+如果缺少依赖  sudo apt install -f  然后重新安装
+或者sudo apt --fix-broken install 依赖安装
+sudo apt-get install synaptic  卸载软件的软件下载
+sudo apt-get  purge  软件名   卸载软件的命令
+系统更新
+安装输入法
+sudo apt-get  purge  ibus
+sudo aptitude install fcitx-bin fcitx-table fcitx-config-gtk fcitx-config-gtk2 fcitx-frontend-all
+sudo aptitude install qt5-default qtcreator qml-module-qtquick-controls2
+sudo apkg -i 软件名
+wps并且安装缺失字体
+缺失字体安装命令如下
+sudo cp * /usr/share/fonts
+sudo mkfontscale
+sudo mkfontdir
+sudo fc-cache
+安装其他软件
+VScode        https://code.visualstudio.com/
+Guake         sudo apt-get install guake   
+设置开机启动   sudo cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
+vim           sudo apt install vim
+python        sudo apt install python
+Jetbrains全家桶
+electron-ssr      先安装依赖  sudo apt install libcanberra-gtk-module libcanberra-gtk3-module gconf2 gconf-service libappindicator1   并且确保安装了Python然后安装软件
+截图软件Flameshot      sudo apt-get install flameshot 
+设置快捷键 
+名称：shot
+命令：flameshot gui
+快捷键：Alt+z
+小火车：sl  sudo apt install sl
+screenfetch  sudo apt install screenfetch
+虚拟机     sudo chmod +x VMware.bundle ； sudo ./VMware.bundle 
+uget   sudo apt install uget
+aria2  sudo apt install aria2
+sudo add-apt-repository ppa:uget-team/ppa
+sudo apt update
+sudo apt install uget-integrator
+然后就可以在谷歌上安装uget插件uGet Integration
+vlc  sudo apt install vlc
+Teamview  远程控制电脑 https://www.teamviewer.cn/cn/download/linux/
+jdk   解压后放到你想放的目录下
+编辑环境变量
+sudo vim ~/.bashrc ~/将下面的命令输入到最后一行 路径和jdk版本号自己安照自己的目录和版本号来设定
+export JAVA_HOME=/usr/local/jdk1.8.0_221
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=.:${JAVA_HOME}/bin:$PATH
+
+source ~/.bashrc 刷新变量
+maven   https://maven.apache.org/download.cgi
+git   sudo apt install git
+terminator sudo apt install terminator
+配置 Shell执行下面的命令：    cat /etc/shells
+可以看到 Ubuntu 已经内置了各种 Shell：
+/bin/bash
+/bin/csh
+/bin/dash
+/bin/ksh
+/bin/sh
+/bin/tcsh
+安装 zsh   sudo apt install zsh
+将 zsh 设置为系统默认 shell   sudo chsh -s /bin/zsh
+自动安装，如果你没安装 git 需要先安装 git
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+或者手动安装
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+重启Terminal
+ZSH 配置
+zsh 的配置主要集中在 ~/.zshrc 文件里，我们可以给常用命令配置别名：
+alias cls='clear'
+alias ll='ls -l'
+alias la='ls -a'
+alias vi='vim'
+alias grep="grep --color=auto"
+或者选择 zsh 的主题                ZSH_THEME="robbyrussell"
+oh-my-zsh 内置了很多主题，对应的主题文件存放在 ~/.oh-my-zsh/themes 目录下，你可以根据自己的喜好选择或者编辑主题。
+ZSH 插件安装
+oh-my-zsh 还支持各种插件，存放在 ~/.oh-my-zsh/plugins 目录下
+autojump：快速切换目录插件     sudo apt install autojump
+zsh-autosuggestions：命令行命令键入时的历史命令建议插件
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+zsh-syntax-highlighting：命令行语法高亮插件
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+插件安装好后需要在 ~/.zshrc 文件里配置后方可使用，配置如下：
+打开sudo ~/.zshrc 文件，找到如下这行配置代码，在后面追加插件名
+plugins=(其他插件名 autojump zsh-autosuggestions zsh-syntax-highlighting)    
+clash  。。。。。参考https://www.cnblogs.com/sueyy yy/p/12424178.html
+安装媒体解码器来播放 MP3、MPEG4 和其他格式媒体文件    sudo apt install ubuntu-restricted-extras
+Pitivi   Pitivi是一款Linux下的视频剪辑软件，在Ubuntu下的安装命令如下
+sudo  sudo apt install pitivi
+GIMP  sudo apt install gimp
+obs 录屏软件  sudo apt install ffmpeg   ;  sudo apt install obs-studio
+
+壁纸轮播
+使用Python+gnome指令实现ubuntu壁纸轮播。
+
+假设壁纸目录为：/home/sweepingmonk/Pictures
+
+编写Python脚本，假设文件名为 chbg.py，所在目录为：/home/sweepingmonk/shell。
+
+import os
+import threading
+interval = 5
+def execCmd(cmd):
+    result = os.popen(cmd)
+    text = result.read()
+    result.close()
+    return text
+
+def change():
+    pic_path = "/home/sweepingmonk/Pictures"
+    cmd = "cd %s &&  ls | sort -R | head -1" % pic_path
+    pic_url = execCmd(cmd).replace('\n', '')
+    ch_cmd = ('gsettings set org.gnome.desktop.background picture-uri file:"%s/%s"' % (pic_path, pic_url))
+    os.system(ch_cmd)
+
+def func_time():
+    change()
+    timer = threading.Timer(interval, func_time)
+    timer.start()
+
+timer = threading.Timer(interval,func_time)
+timer.start()
+然后将 ~/.config/autostart 下的 docky.desktop 复制一份，命名为 chbg.desktop，并修改为如下内容：
+
+[Desktop Entry]
+Name=chbg
+Type=Application
+Exec=python3 /home/sweepingmonk/shell/chbg.py
+Terminal=false
+NoDisplay=false
+Categories=Utility;
+
+重启，壁纸开始自动轮换，修改代码中的 interval = 5 可以设置轮换周期（当前为5s）。
+
+删除桌面图片，打开 gnome tweaks，选择桌面，将显示图标关闭，注意，第一个最好保持开启，关闭后在桌面右键不能出现打开终端的菜单。
+converseen  sudo apt-get install converseen
+compiz   sudo apt-get install compiz-plugins ; sudo apt-get install compizconfig-settings-manager
+openshot  sudo   apt-get install   openshot-qt
+nomacs  sudo apt-get install nomacs
+解决看电子书的问题  sudo apt-get install calibre
+或点击下面的图标。
+calibre
+如果您不想启动完整的calibre客户端来查看您的电子书文件，则可以将.desktop启动程序添加到calibre的内置电子书阅读器中：
+在~/.local/share/applications中创建一个新的.desktop文件：
+gedit ~/.local/share/applications/calibre-ebook-viewer.desktop
+将以下段落复制并粘贴到文件中：
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon=calibre
+Exec=ebook-viewer
+Name=Calibre Ebook Viewer
+Comment=Display .epub files and other ebook formats
+MimeType=application/x-mobipocket-ebook;application/epub+zip;
+StartupWMClass=calibre-ebook-viewer
+保存文件。您现在应该可以从短划线和右键单击”Open with”菜单启动Calibre的内置电子书阅读器。
+mpv视频播放 sudo apt install mpv
+sudo apt-get install bcmwl-kernel-source  激活bcm的无线网卡
+
+美化GNOME桌面    sudo apt install gnome-tweak-tool gnome-shell-extensions chrome-gnome-shell
+安装谷歌浏览器
+在浏览器中安装扩展GNOME Shell integration
+将下载的主题移动到 /usr/share/themes/   ；   /usr/share/icons/  推荐orchis-light
+gnome 选项
+Dash to Dock
+User Themes 
+Drop Down Terminal 
+Coverflow Alt-Tab
+workspace grid
+Dynamic Top Bar
+Top Panel Workspace Scroll
+Workspace Indicator
+Circular Battery Indicator
+hide-top-bar
+Simple net speed 
+
+livewallpaper
+sudo add-apt-repository ppa:fyrmir/livewallpaper-daily
+sudo apt-get update && sudo apt-get install livewallpaper
+sudo apt-get install livewallpaper-config livewallpaper-indicator
+开机动画
+sudo apt-get install plymouth-theme*
+sudo update-alternatives --config default.plymouth
+sudo update-initramfs  -u
+reboot
+自定义选定一个动画的特效，在/usr/share/plymouth/themes/下找到相应的主题，例如：ubuntu-gnome-logo
+修改此文件夹内的.png图片和ubuntu_gnome_logo.png即可获得相应的自定义效果。
+双系统解决时间不一致方法
+sudo apt-get update
+sudo apt-get install ntpdate
+sudo ntpdate time.windows.com
+sudo hwclock --localtime --systohc  完成
+
+更改启动顺序
+sudo gedit /etc/default/grub
+输入完回车后会弹出一个grub文件，将文本”GRUB_DEFAULT=0“中的0改成win10系统的序号4，同时可以修改”GRUB_TIMEOUT=10“中的10，修改默认的等待时间，这里改成5秒。改完后点击”保存“然后关闭
+sudo update-grub
